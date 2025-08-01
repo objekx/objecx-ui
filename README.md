@@ -4,6 +4,7 @@ Lightweight, HTML-first design system with Velin identity: monochrome base with 
 
 ## Quick start
 
+Paste this into your HTML file for a quick VelinUI button
 ```html
 <link rel="stylesheet" href="https://your-deploy-url/src/index.css" />
 <button class="velin-btn">Trigger</button>
