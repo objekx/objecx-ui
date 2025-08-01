@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Velin UI Demo</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/svg+xml" href="VelinLogo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --radius: 1rem;
+      --radius-pill: 999px;
+      --gradient-velin: linear-gradient(135deg,#a3150d 0%,#c75610 15%,#c4a423 30%,#0e567d 60%,#a8439d 100%);
+      --shadow: 0 40px 100px -10px rgba(0,0,0,.6);
+      --text: #f5f5f7;
+      --bg: #0f0f12;
+      --card-bg: rgba(255,255,255,0.03);
+      --transition: .35s cubic-bezier(.4,.2,.2,1);
+      --font-stack: system-ui,-apple-system,BlinkMacSystemFont,"JetBrains Mono", monospace;
+    }
+    *{box-sizing:border-box;}
+    body {
+      margin:0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-stack);
+      -webkit-font-smoothing: antialiased;
+      min-height:100vh;
+      padding:2rem;
+      line-height:1.4;
+    }
+    h1 {
+      margin:0;
+      font-size:2.5rem;
+      background: var(--gradient-velin);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .grid {
+      display:grid;
+      gap:1.5rem;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      margin-top:1.5rem;
+    }
+    .section {
+      margin-bottom:3rem;
+    }
+    .sub {
+      font-size:.9rem;
+      opacity:.85;
+      margin:4px 0 16px;
+    }
+    /* Trigger button */
+    .velin-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: .4em;
+      padding: .85rem 1.75rem;
+      border: none;
+      border-radius: var(--radius-pill);
+      font-weight:600;
+      font-size:1rem;
+      cursor:pointer;
+      overflow:hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+      min-height:44px;
+      line-height:1;
+      letter-spacing:.5px;
+      background: #fff;
+      color: #000;
+    }
+    @media (prefers-color-scheme: light){
+      .velin-btn { background:#000; color:#fff; }
+    }
+    @media (prefers-color-scheme: dark){
+      .velin-btn { background:#fff; color:#000; }
+    }
+    .velin-btn.highlighted {
+      background: var(--gradient-velin);
+      color: inherit;
+    }
+    .velin-btn.highlighted::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      mix-blend-mode: overlay;
+      opacity:.15;
+      background: var(--gradient-velin);
+      border-radius: inherit;
+      pointer-events:none;
+    }
+    .velin-btn:hover {
+      transform:scale(1.03);
+      box-shadow: var(--shadow);
+    }
+    .velin-btn:active {
+      transform:scale(0.97);
+    }
+    .velin-btn:focus-visible {
+      outline:2px solid transparent;
+      box-shadow: 0 0 0 3px rgba(168,67,157,.7);
+    }
+
+    /* Card */
+    .velin-card {
+      background: var(--card-bg);
+      padding:1.5rem 1.25rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow:hidden;
+      transition: transform var(--transition);
+    }
+    .velin-card:hover {
+      transform: translateY(-2px);
+    }
+    .velin-card-header {
+      font-size:1.25rem;
+      font-weight:700;
+      margin-bottom:.5rem;
+    }
+    .velin-card-body {
+      font-size:.95rem;
+      margin-bottom:1rem;
+    }
+    .velin-card-footer {
+      display:flex;
+      gap:.75rem;
+      flex-wrap:wrap;
+      font-size:.75rem;
+    }
+
+    /* Input */
+    .velin-input {
+      background: rgba(255,255,255,0.05);
+      border: none;
+      padding: .85rem 1rem;
+      border-radius: .75rem;
+      font-size:1rem;
+      font-family: inherit;
+      color: var(--text);
+      width:100%;
+      transition: box-shadow var(--transition), background var(--transition);
+      outline: none;
+      min-width:0;
+    }
+    .velin-input:focus {
+      box-shadow: 0 0 0 3px rgba(168,67,157,.6);
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* Toast */
+    .velin-toast-container {
+      position: fixed;
+      top:16px;
+      right:16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      z-index:999;
+      max-width:360px;
+      font-family: var(--font-stack);
+    }
+    .velin-toast {
+      background: rgba(255,255,255,0.08);
+      padding:12px 18px;
+      border-radius:12px;
+      backdrop-filter: blur(8px);
+      display:flex;
+      gap:12px;
+      align-items:center;
+      color: var(--text);
+      box-shadow: 0 30px 60px -10px rgba(0,0,0,.5);
+      font-size:.9rem;
+      overflow:hidden;
+      position: relative;
+      animation: slide-in .35s ease forwards;
+    }
+    .velin-toast.success { border-left:4px solid #1eb854; }
+    .velin-toast.error { border-left:4px solid #e24f4f; }
+    .velin-toast .close {
+      margin-left:auto;
+      background:none;
+      border:none;
+      cursor:pointer;
+      font-size:1rem;
+      opacity:.7;
+    }
+    @keyframes slide-in {
+      from { opacity:0; transform: translateX(10px); }
+      to { opacity:1; transform: translateX(0); }
+    }
+
+    /* Float/modal */
+    .velin-float-backdrop {
+      position: fixed;
+      inset:0;
+      background: rgba(15,15,18,0.85);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:1rem;
+      z-index:50;
+      visibility:hidden;
+      opacity:0;
+      transition: opacity .25s ease;
+    }
+    .velin-float {
+      background: rgba(255,255,255,0.03);
+      border-radius:1rem;
+      padding:1.75rem 2rem;
+      max-width:480px;
+      width:100%;
+      position:relative;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+    .velin-float.show {
+      visibility:visible;
+      opacity:1;
+    }
+    .close-btn {
+      position:absolute;
+      top:12px;
+      right:12px;
+      background:none;
+      border:none;
+      font-size:1.25rem;
+      cursor:pointer;
+      color: var(--text);
+      opacity:.75;
+    }
+
+    /* Utility & code block */
+    pre {
+      background: rgba(255,255,255,0.05);
+      padding:1rem;
+      border-radius:.75rem;
+      overflow:auto;
+      font-size:.75rem;
+      position: relative;
+    }
+    .copy {
+      position:absolute;
+      top:8px;
+      right:8px;
+      background: rgba(255,255,255,0.08);
+      border:none;
+      padding:6px 10px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:.6rem;
+      letter-spacing:1px;
+      font-weight:600;
+      backdrop-filter: blur(6px);
+    }
+    .badge {
+      display:inline-block;
+      background: rgba(255,255,255,0.08);
+      padding:4px 12px;
+      border-radius:999px;
+      font-size:.55rem;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+    .layout-split {
+      display:flex;
+      gap:1.5rem;
+      flex-wrap:wrap;
+    }
+    .pill {
+      background: rgba(255,255,255,0.04);
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:.65rem;
+    }
+    .card-row {
+      display:flex;
+      gap:1rem;
+      flex-wrap:wrap;
+    }
+
+    .fade-in {
+      animation: fade .6s ease both;
+    }
+    @keyframes fade {
+      from { opacity:0; transform:translateY(8px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+    .small {
+      font-size:.75rem;
+      opacity:.8;
+    }
+    .header {
+      display:flex;
+      flex-wrap:wrap;
+      justify-content: space-between;
+      align-items:center;
+      gap:1rem;
+      margin-bottom:1.5rem;
+    }
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:1.5rem;
+      font-weight:700;
+    }
+    .brand img {
+      width:32px;
+      height:32px;
+      border-radius:6px;
+    }
+    .pill-accent {
+      background: var(--gradient-velin);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="brand">
+      <img src="VelinLogo.svg" alt="Velin" />
+      <div>
+        Velin UI <div class="small">HTML-first design system</div>
+      </div>
+    </div>
+    <div>
+      <button class="velin-btn highlighted" id="show-float-demo">Show Float</button>
+      <button class="velin-btn" id="toast-success">Toast Success</button>
+      <button class="velin-btn" id="toast-error">Toast Error</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h1>Velin UI</h1>
+    <div class="sub">Drop-in components. Polished defaults. No framework required.</div>
+  </div>
+
+  <div class="grid">
+    <!-- Buttons -->
+    <div class="velin-card fade-in">
+      <div class="velin-card-header">Trigger (Button)</div>
+      <div class="velin-card-body">
+        A pill-shaped action button. Default adapts to light/dark; add <code class="small">.highlighted</code> for gradient emphasis.
+      </div>
+      <div class="velin-card-footer">
+        <div class="card-row">
+          <button class="velin-btn">Default</button>
+          <button class="velin-btn highlighted">Highlighted</button>
+        </div>
+      </div>
+      <pre><code>&lt;button class="velin-btn"&gt;Default&lt;/button&gt;
+&lt;button class="velin-btn highlighted"&gt;Highlighted&lt;/button&gt;</code><button class="copy" data-target="btn-code">Copy</button></pre>
+    </div>
+
+    <!-- Input -->
+    <div class="velin-card fade-in">
+      <div class="velin-card-header">Input</div>
+      <div class="velin-card-body">
+        Clean text input with focus ring and subtle background shift.
+      </div>
+      <div class="velin-card-footer">
+        <div style="max-width:320px;">
+          <input class="velin-input" placeholder="Type something…" />
+        </div>
+      </div>
+      <pre><code>&lt;input class="velin-input" placeholder="Type something…" /&gt;</code><button class="copy" data-target="input-code">Copy</button></pre>
+    </div>
+
+    <!-- Card -->
+    <div class="velin-card fade-in">
+      <div class="velin-card-header">Card</div>
+      <div class="velin-card-body">
+        Container with elevation, padding, and hover lift. Great for grouping content.
+      </div>
+      <div class="velin-card-footer">
+        <div class="card-row">
+          <div style="flex:1;">
+            <div class="velin-card">
+              <div class="velin-card-header">Nested card</div>
+              <div class="velin-card-body">Example inside example.</div>
+              <div class="velin-card-footer">
+                <button class="velin-btn highlighted">Action</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <pre><code>&lt;div class="velin-card"&gt;
+  &lt;div class="velin-card-header"&gt;Title&lt;/div&gt;
+  &lt;div class="velin-card-body"&gt;Body content.&lt;/div&gt;
+  &lt;div class="velin-card-footer"&gt;
+    &lt;button class="velin-btn"&gt;Trigger&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code><button class="copy" data-target="card-code">Copy</button></pre>
+    </div>
+  </div>
+
+  <!-- Toast + Float -->
+  <div class="grid">
+    <div class="velin-card fade-in">
+      <div class="velin-card-header">Toast / Notification</div>
+      <div class="velin-card-body">
+        Lightweight toasts with status colors and auto-dismiss. Use the JS helper <code class="small">showToast(message, type)</code>.
+      </div>
+      <div class="velin-card-footer">
+        <div class="pill">Success / Error</div>
+      </div>
+      <pre><code>showToast('Success! You did it.', 'success');
+showToast('Something went wrong.', 'error');</code><button class="copy" data-target="toast-code">Copy</button></pre>
+    </div>
+    <div class="velin-card fade-in">
+      <div class="velin-card-header">Float (Modal)</div>
+      <div class="velin-card-body">
+        Accessible dialog with backdrop. Use it for settings, confirmations, or info.
+      </div>
+      <div class="velin-card-footer">
+        <div class="small">Click the "Show Float" button above to open.</div>
+      </div>
+      <pre><code>&lt;div class="velin-float-backdrop" id="float"&gt;
+  &lt;div class="velin-float"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code><button class="copy" data-target="float-code">Copy</button></pre>
+    </div>
+  </div>
+
+  <!-- Hidden float -->
+  <div class="velin-float-backdrop" id="float">
+    <div class="velin-float" role="dialog" aria-modal="true" aria-label="Demo float">
+      <button class="close-btn" aria-label="Close">&times;</button>
+      <div style="margin-bottom:8px;">
+        <div style="font-size:1.25rem;font-weight:700;">Velin Float</div>
+        <div class="small">Accessible, polished modal.</div>
+      </div>
+      <p style="margin:0 0 1rem;">This is a reusable float component. You can put any content here, including forms or confirmations.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button class="velin-btn">Cancel</button>
+        <button class="velin-btn highlighted">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast container (populated by JS) -->
+  <div class="velin-toast-container" aria-live="polite" role="status"></div>
+
+  <script>
+    // toast helper
+    function showToast(message, type = "success", duration = 3000) {
+      let container = document.querySelector(".velin-toast-container");
+      if (!container) {
+        container = document.createElement("div");
+        container.className = "velin-toast-container";
+        document.body.appendChild(container);
+      }
+      const toast = document.createElement("div");
+      toast.className = `velin-toast ${type}`;
+      toast.innerHTML = `<div>${message}</div><button class="close" aria-label="close">&times;</button>`;
+      container.appendChild(toast);
+      function remove() {
+        toast.style.opacity = "0";
+        setTimeout(() => toast.remove(), 300);
+      }
+      toast.querySelector(".close").addEventListener("click", remove);
+      setTimeout(remove, duration);
+    }
+
+    // float logic
+    const floatBackdrop = document.getElementById("float");
+    document.getElementById("show-float-demo").addEventListener("click", ()=> {
+      floatBackdrop.classList.add("show");
+    });
+    floatBackdrop.querySelector(".close-btn").addEventListener("click", ()=> {
+      floatBackdrop.classList.remove("show");
+    });
+    // example toast triggers
+    document.getElementById("toast-success").addEventListener("click", () => showToast("Success! You're crushing it.", "success"));
+    document.getElementById("toast-error").addEventListener("click", () => showToast("Error occurred.", "error"));
+
+    // copy buttons
+    document.querySelectorAll(".copy").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const codeEl = btn.previousElementSibling || document.querySelector(`#${btn.dataset.target}`);
+        if (!codeEl) return;
+        const text = codeEl.innerText;
+        navigator.clipboard.writeText(text).then(() => {
+          btn.textContent = "Copied";
+          setTimeout(() => (btn.textContent = "Copy"), 1000);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
