@@ -6,7 +6,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="icon" type="image/svg+xml" href="VelinLogo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Inter variable font for UI, JetBrains Mono for code -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@8..14,300..700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
   <style>
     :root {
       --radius: 1rem;
@@ -17,14 +19,15 @@
       --bg: #0f0f12;
       --card-bg: rgba(255,255,255,0.03);
       --transition: .35s cubic-bezier(.4,.2,.2,1);
-      --font-stack: system-ui,-apple-system,BlinkMacSystemFont,"JetBrains Mono", monospace;
+      --font-sans: "Inter";
+      --font-mono: "JetBrains Mono";
     }
     *{box-sizing:border-box;}
     body {
       margin:0;
       background: var(--bg);
       color: var(--text);
-      font-family: var(--font-stack);
+      font-family: var(--font-sans);
       -webkit-font-smoothing: antialiased;
       min-height:100vh;
       padding:2rem;
@@ -71,6 +74,7 @@
       letter-spacing:.5px;
       background: #fff;
       color: #000;
+      font-family: var(--font-sans);
     }
     @media (prefers-color-scheme: light){
       .velin-btn { background:#000; color:#fff; }
@@ -113,6 +117,7 @@
       position: relative;
       overflow:hidden;
       transition: transform var(--transition);
+      font-family: var(--font-sans);
     }
     .velin-card:hover {
       transform: translateY(-2px);
@@ -140,7 +145,7 @@
       padding: .85rem 1rem;
       border-radius: .75rem;
       font-size:1rem;
-      font-family: inherit;
+      font-family: var(--font-sans);
       color: var(--text);
       width:100%;
       transition: box-shadow var(--transition), background var(--transition);
@@ -162,7 +167,7 @@
       gap:10px;
       z-index:999;
       max-width:360px;
-      font-family: var(--font-stack);
+      font-family: var(--font-mono);
     }
     .velin-toast {
       background: rgba(255,255,255,0.08);
@@ -178,6 +183,7 @@
       overflow:hidden;
       position: relative;
       animation: slide-in .35s ease forwards;
+      font-family: var(--font-mono);
     }
     .velin-toast.success { border-left:4px solid #1eb854; }
     .velin-toast.error { border-left:4px solid #e24f4f; }
@@ -217,6 +223,7 @@
       position:relative;
       box-shadow: var(--shadow);
       backdrop-filter: blur(12px);
+      font-family: var(--font-sans);
     }
     .velin-float.show {
       visibility:visible;
@@ -242,6 +249,10 @@
       overflow:auto;
       font-size:.75rem;
       position: relative;
+      font-family: var(--font-mono);
+    }
+    code {
+      font-family: var(--font-mono);
     }
     .copy {
       position:absolute;
@@ -265,6 +276,7 @@
       font-size:.55rem;
       text-transform:uppercase;
       letter-spacing:1px;
+      font-family: var(--font-sans);
     }
     .layout-split {
       display:flex;
@@ -276,6 +288,7 @@
       padding:4px 10px;
       border-radius:999px;
       font-size:.65rem;
+      font-family: var(--font-sans);
     }
     .card-row {
       display:flex;
@@ -293,6 +306,7 @@
     .small {
       font-size:.75rem;
       opacity:.8;
+      font-family: var(--font-sans);
     }
     .header {
       display:flex;
@@ -308,6 +322,7 @@
       gap:10px;
       font-size:1.5rem;
       font-weight:700;
+      font-family: var(--font-sans);
     }
     .brand img {
       width:32px;
