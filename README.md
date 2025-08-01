@@ -1,6 +1,6 @@
 # Velin UI
 
-Lightweight, HTML-first design system with Velin identity: monochrome base with rainbow gradient accents. No JS framework required—drop in the CSS/JS and use.
+Lightweight, HTML-first design system with Velin identity: monochrome base with rainbow gradient accents. No JS framework required — drop in a small snippet and a <link/> to the deployement and get started with Velin. Read $QuickStart for more
 
 ## Quick start
 
