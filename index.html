@@ -255,18 +255,27 @@
       font-family: var(--font-mono);
     }
     .copy {
-      position:absolute;
-      top:8px;
-      right:8px;
-      background: rgba(255,255,255,0.08);
-      border:none;
-      padding:6px 10px;
-      border-radius:999px;
-      cursor:pointer;
-      font-size:.6rem;
-      letter-spacing:1px;
-      font-weight:600;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: none;
+      padding: 6px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.6rem;
+      letter-spacing: 1px;
+      font-weight: 600;
       backdrop-filter: blur(6px);
+      transition: all 0.3s ease;
+    }
+
+    .copy.copied {
+      transform: scale(1.05);
+      letter-spacing: 2px;
+      opacity: 0.8;
+      background: rgba(168, 67, 157, 0.1);
+    }
     }
     .badge {
       display:inline-block;
