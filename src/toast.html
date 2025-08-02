@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Velin Toast</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/components/colors.css" />
+  <style>
+    .controls { display:flex; gap:12px; flex-wrap:wrap; font-family:Inter,sans-serif; }
+    .velin-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: .4em;
+      padding: .85rem 1.25rem;
+      border: none;
+      border-radius: var(--radius-pill);
+      font-weight:600;
+      font-size:.9rem;
+      cursor:pointer;
+      overflow:hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+      background: #fff;
+      color:#000;
+    }
+    .velin-btn.highlighted { background: var(--gradient-velin); color:#fff; }
+    .toast-container {
+      position: fixed;
+      top:16px;
+      right:16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      z-index:999;
+      max-width:360px;
+    }
+    .toast {
+      background: rgba(255,255,255,0.08);
+      padding:12px 18px;
+      border-radius:12px;
+      backdrop-filter: blur(8px);
+      display:flex;
+      gap:12px;
+      align-items:center;
+      color: var(--text);
+      box-shadow: var(--toast-shadow);
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      position: relative;
+      transition: opacity .25s ease;
+    }
+    .toast.success { border-left:4px solid var(--success); }
+    .toast.error { border-left:4px solid var(--error); }
+    .close {
+      margin-left:auto;
+      background:none;
+      border:none;
+      cursor:pointer;
+      font-size:1rem;
+      opacity:.7;
+    }
+  </style>
+</head>
+<body style="background:transparent; margin:0; padding:2rem;">
+  <div class="controls">
+    <button class="velin-btn" onclick="show('success')">Show Success</button>
+    <button class="velin-btn highlighted" onclick="show('error')">Show Error</button>
+  </div>
+  <div class="toast-container" aria-live="polite" role="status"></div>
+
+  <script>
+    function show(type) {
+      const container = document.querySelector(".toast-container");
+      const t = document.createElement("div");
+      t.className = `toast ${type}`;
+      t.innerHTML = `<div>${type === "success" ? "Operation succeeded" : "Something went wrong"}</div><button class="close" aria-label="close">&times;</button>`;
+      container.appendChild(t);
+      setTimeout(() => {
+        t.style.opacity = "0";
+        setTimeout(() => t.remove(), 300);
+      }, 2500);
+      t.querySelector(".close").addEventListener("click", () => {
+        t.style.opacity = "0";
+        setTimeout(() => t.remove(), 300);
+      });
+    }
+  </script>
+</body>
+</html>
