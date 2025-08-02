@@ -6,6 +6,48 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="icon" type="image/svg+xml" href="VelinLogo.svg" />
   <link rel="stylesheet" href="velin-ui.css" />
+  <style>
+    /* tweak for iframe previews */
+    .preview-frame {
+      width: 100%;
+      height: 140px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      background: #0f0f12;
+      overflow: hidden;
+    }
+    .snippet-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .snippet-footer {
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .small-link {
+      font-size:.65rem;
+      opacity:.8;
+      text-decoration:none;
+      color:inherit;
+      background: rgba(255,255,255,0.04);
+      padding:4px 10px;
+      border-radius:999px;
+    }
+    .component-label {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:8px;
+    }
+    .iframe-wrapper {
+      flex:1;
+      min-height:140px;
+    }
+  </style>
 </head>
 <body>
 
@@ -55,7 +97,6 @@
           <div class="velin-card-header">Mapdroid</div>
           <div class="velin-card-body">Location & utility app—showcases Velin UI in a real productivity context.</div>
         </a>
-        <!-- add more sibling project cards here -->
       </div>
 
       <div class="separator" aria-hidden="true"></div>
@@ -66,50 +107,156 @@
       <h1>UI Elements</h1>
       <p class="lead">Use this page if you want to manually insert code.</p>
       <p class="text">
-        To easily copy things from this page, simply navigate to the snippet URL for the component you want, like <code>ui.velin.vercel.app/trigger.html</code> or <code>ui.velin.vercel.app/float.html</code>.
+        To easily copy things from this page, simply navigate to the snippet URL for the component you want, like <code>ui.velin.vercel.app/components/trigger.html</code> or <code>ui.velin.vercel.app/components/float.html</code>.
       </p>
       <p class="text" style="margin-top:1rem;">
-        If you are using the Velin color palette, then simply add a link to your CSS file: <code>ui.velin.vercel.app/colors.css</code>
+        If you are using the Velin color palette, then simply add a link to your CSS file: <code>ui.velin.vercel.app/components/colors.css</code>
       </p>
 
-      <!-- Example snippet list -->
-      <div class="snippet-grid">
-        <div class="snippet-card">
-          <div class="snippet-title">Trigger</div>
+      <div class="snippet-grid" style="display:grid; gap:1.5rem; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); margin-top:1.5rem;">
+        <!-- Trigger -->
+        <div class="snippet-card velin-card">
+          <div class="component-label">
+            <div class="snippet-title">Trigger</div>
+            <div style="font-size:.65rem; opacity:.8;">trigger.html</div>
+          </div>
           <div class="snippet-desc">The pill-shaped action button. Gradient highlight variant.</div>
-          <div class="snippet-links">
-            <a class="velin-btn small" href="trigger.html">View / Copy</a>
+          <div class="iframe-wrapper">
+            <iframe class="preview-frame" src="components/trigger.html" loading="lazy" title="Trigger preview"></iframe>
+          </div>
+          <div class="snippet-footer">
+            <a class="velin-btn small" href="components/trigger.html">View / Copy</a>
+            <a class="small-link" href="components/trigger.html" target="_blank" rel="noopener">Raw</a>
           </div>
         </div>
-        <div class="snippet-card">
-          <div class="snippet-title">Float</div>
-          <div class="snippet-desc">Accessible modal/dialog with backdrop blur.</div>
-          <div class="snippet-links">
-            <a class="velin-btn small" href="float.html">View / Copy</a>
+
+        <!-- Card -->
+        <div class="snippet-card velin-card">
+          <div class="component-label">
+            <div class="snippet-title">Card</div>
+            <div style="font-size:.65rem; opacity:.8;">card.html</div>
           </div>
-        </div>
-        <div class="snippet-card">
-          <div class="snippet-title">Input</div>
-          <div class="snippet-desc">Text input with focus ring and soft background.</div>
-          <div class="snippet-links">
-            <a class="velin-btn small" href="input.html">View / Copy</a>
-          </div>
-        </div>
-        <div class="snippet-card">
-          <div class="snippet-title">Toast</div>
-          <div class="snippet-desc">Temporary notification / toast helper.</div>
-          <div class="snippet-links">
-            <a class="velin-btn small" href="toast.html">View / Copy</a>
-          </div>
-        </div>
-        <div class="snippet-card">
-          <div class="snippet-title">Card</div>
           <div class="snippet-desc">Elevated container for grouping content.</div>
-          <div class="snippet-links">
-            <a class="velin-btn small" href="card.html">View / Copy</a>
+          <div class="iframe-wrapper">
+            <iframe class="preview-frame" src="components/card.html" loading="lazy" title="Card preview"></iframe>
+          </div>
+          <div class="snippet-footer">
+            <a class="velin-btn small" href="components/card.html">View / Copy</a>
+            <a class="small-link" href="components/card.html" target="_blank" rel="noopener">Raw</a>
           </div>
         </div>
-        <!-- more: badge.html, layout.html, tabs.html, etc -->
+
+        <!-- Input -->
+        <div class="snippet-card velin-card">
+          <div class="component-label">
+            <div class="snippet-title">Input</div>
+            <div style="font-size:.65rem; opacity:.8;">input.html</div>
+          </div>
+          <div class="snippet-desc">Text input with focus ring and soft background.</div>
+          <div class="iframe-wrapper">
+            <iframe class="preview-frame" src="components/input.html" loading="lazy" title="Input preview"></iframe>
+          </div>
+          <div class="snippet-footer">
+            <a class="velin-btn small" href="components/input.html">View / Copy</a>
+            <a class="small-link" href="components/input.html" target="_blank" rel="noopener">Raw</a>
+          </div>
+        </div>
+
+        <!-- Float -->
+        <div class="snippet-card velin-card">
+          <div class="component-label">
+            <div class="snippet-title">Float</div>
+            <div style="font-size:.65rem; opacity:.8;">float.html</div>
+          </div>
+          <div class="snippet-desc">Accessible modal/dialog with backdrop blur.</div>
+          <div class="iframe-wrapper">
+            <iframe class="preview-frame" src="components/float.html" loading="lazy" title="Float preview"></iframe>
+          </div>
+          <div class="snippet-footer">
+            <a class="velin-btn small" href="components/float.html">View / Copy</a>
+            <a class="small-link" href="components/float.html" target="_blank" rel="noopener">Raw</a>
+          </div>
+        </div>
+
+        <!-- Toast -->
+        <div class="snippet-card velin-card">
+          <div class="component-label">
+            <div class="snippet-title">Toast</div>
+            <div style="font-size:.65rem; opacity:.8;">toast.html</div>
+          </div>
+          <div class="snippet-desc">Temporary notification / toast helper.</div>
+          <div class="iframe-wrapper">
+            <iframe class="preview-frame" src="components/toast.html" loading="lazy" title="Toast preview"></iframe>
+          </div>
+          <div class="snippet-footer">
+            <a class="velin-btn small" href="components/toast.html">View / Copy</a>
+            <a class="small-link" href="components/toast.html" target="_blank" rel="noopener">Raw</a>
+          </div>
+        </div>
+
+        <!-- Badge -->
+        <div class="snippet-card velin-card">
+          <div class="component-label">
+            <div class="snippet-title">Badge</div>
+            <div style="font-size:.65rem; opacity:.8;">badge.html</div>
+          </div>
+          <div class="snippet-desc">Status and accent badges.</div>
+          <div class="iframe-wrapper">
+            <iframe class="preview-frame" src="components/badge.html" loading="lazy" title="Badge preview"></iframe>
+          </div>
+          <div class="snippet-footer">
+            <a class="velin-btn small" href="components/badge.html">View / Copy</a>
+            <a class="small-link" href="components/badge.html" target="_blank" rel="noopener">Raw</a>
+          </div>
+        </div>
+
+        <!-- Tooltip -->
+        <div class="snippet-card velin-card">
+          <div class="component-label">
+            <div class="snippet-title">Tooltip</div>
+            <div style="font-size:.65rem; opacity:.8;">tooltip.html</div>
+          </div>
+          <div class="snippet-desc">Hover-based contextual helper.</div>
+          <div class="iframe-wrapper">
+            <iframe class="preview-frame" src="components/tooltip.html" loading="lazy" title="Tooltip preview"></iframe>
+          </div>
+          <div class="snippet-footer">
+            <a class="velin-btn small" href="components/tooltip.html">View / Copy</a>
+            <a class="small-link" href="components/tooltip.html" target="_blank" rel="noopener">Raw</a>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="snippet-card velin-card">
+          <div class="component-label">
+            <div class="snippet-title">Tabs</div>
+            <div style="font-size:.65rem; opacity:.8;">tabs.html</div>
+          </div>
+          <div class="snippet-desc">Segmented tab navigation.</div>
+          <div class="iframe-wrapper">
+            <iframe class="preview-frame" src="components/tabs.html" loading="lazy" title="Tabs preview"></iframe>
+          </div>
+          <div class="snippet-footer">
+            <a class="velin-btn small" href="components/tabs.html">View / Copy</a>
+            <a class="small-link" href="components/tabs.html" target="_blank" rel="noopener">Raw</a>
+          </div>
+        </div>
+
+        <!-- Segmented -->
+        <div class="snippet-card velin-card">
+          <div class="component-label">
+            <div class="snippet-title">Segmented Control</div>
+            <div style="font-size:.65rem; opacity:.8;">segmented.html</div>
+          </div>
+          <div class="snippet-desc">Grouped toggle-style control for options.</div>
+          <div class="iframe-wrapper">
+            <iframe class="preview-frame" src="components/segmented.html" loading="lazy" title="Segmented preview"></iframe>
+          </div>
+          <div class="snippet-footer">
+            <a class="velin-btn small" href="components/segmented.html">View / Copy</a>
+            <a class="small-link" href="components/segmented.html" target="_blank" rel="noopener">Raw</a>
+          </div>
+        </div>
       </div>
 
       <div class="separator" aria-hidden="true"></div>
@@ -121,7 +268,7 @@
       <p class="text">Velin UI’s source of truth for colors, spacing, radii, shadows, and typography. You can download or reference the raw token files directly.</p>
       <div class="token-links">
         <a class="velin-btn" href="tokens.json" download>Download JSON</a>
-        <a class="velin-btn" href="colors.css">View CSS Tokens</a>
+        <a class="velin-btn" href="components/colors.css">View CSS Tokens</a>
       </div>
       <div class="separator" aria-hidden="true"></div>
     </section>
