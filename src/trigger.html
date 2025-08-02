@@ -1,1 +1,39 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Velin Trigger</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/components/colors.css" />
+  <style>
+    .wrapper { display:inline-flex; gap:8px; }
+    .velin-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: .4em;
+      padding: .85rem 1.75rem;
+      border: none;
+      border-radius: var(--radius-pill);
+      font-weight:600;
+      font-size:1rem;
+      cursor:pointer;
+      overflow:hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+      background: #fff;
+      color:#000;
+    }
+    .velin-btn.highlighted {
+      background: var(--gradient-velin);
+      color: #fff;
+    }
+    .velin-btn:hover { transform:scale(1.03); box-shadow: var(--shadow); }
+  </style>
+</head>
+<body style="background:transparent; margin:0; padding:1rem;font-family:Inter,sans-serif;">
+  <div class="wrapper">
+    <button class="velin-btn">Default</button>
+    <button class="velin-btn highlighted">Highlighted</button>
+  </div>
+</body>
+</html>
