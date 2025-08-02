@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Velin Segmented Control</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/components/colors.css" />
+  <style>
+    .segmented {
+      display:inline-flex;
+      border-radius:999px;
+      overflow:hidden;
+      background: rgba(255,255,255,0.04);
+      font-size:.85rem;
+      font-family:Inter,sans-serif;
+    }
+    .segmented button {
+      padding:.55rem 1rem;
+      border:none;
+      background:transparent;
+      cursor:pointer;
+      font-weight:600;
+      transition: background .2s ease;
+    }
+    .segmented button.active {
+      background:#fff;
+      color:#000;
+    }
+    .segmented button:not(.active):hover {
+      background: rgba(255,255,255,0.08);
+    }
+  </style>
+</head>
+<body style="background:transparent; margin:0; padding:2rem;">
+  <div class="segmented">
+    <button class="active">Option 1</button>
+    <button>Option 2</button>
+    <button>Option 3</button>
+  </div>
+</body>
+</html>
