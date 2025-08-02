@@ -1,6 +1,6 @@
 // embed.js
 (() => {
-  const CSS_PATH = "/velin-ui.css"; // adjust if you want to use /components/colors.css instead
+  const CSS_PATH = "/components/colors.css"; // adjust if you want to use /components/colors.css instead
   const COMPONENT_BASE = "/components/";
 
   // inject core stylesheet once
