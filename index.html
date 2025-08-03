@@ -289,5 +289,83 @@
   </footer>
 
   <script src="velin-ui.js"></script>
+<script>
+  // escape HTML so it shows as raw code
+  function escapeHtml(str) {
+    return str
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;");
+  }
+
+  // for every snippet card, fetch its raw HTML and insert a code view
+  async function attachRawViews() {
+    // find all snippet cards that have a "Raw" link pointing to the file
+    document.querySelectorAll(".snippet-card").forEach(async card => {
+      const rawLink = card.querySelector("a.small-link");
+      if (!rawLink) return;
+      const url = rawLink.getAttribute("href");
+      try {
+        const res = await fetch(url);
+        if (!res.ok) return;
+        const text = await res.text();
+
+        // create the code block container
+        const pre = document.createElement("pre");
+        pre.style.position = "relative";
+        pre.style.background = "rgba(255,255,255,0.04)";
+        pre.style.padding = "12px";
+        pre.style.borderRadius = "8px";
+        pre.style.marginTop = "8px";
+        pre.style.overflow = "auto";
+        pre.style.fontSize = "0.65rem";
+        pre.style.maxHeight = "220px";
+
+        const code = document.createElement("code");
+        code.innerHTML = escapeHtml(text);
+        code.style.whiteSpace = "pre-wrap";
+        code.style.display = "block";
+        pre.appendChild(code);
+
+        // copy button
+        const copyBtn = document.createElement("button");
+        copyBtn.textContent = "Copy";
+        copyBtn.style.position = "absolute";
+        copyBtn.style.top = "6px";
+        copyBtn.style.right = "6px";
+        copyBtn.style.padding = "4px 10px";
+        copyBtn.style.border = "none";
+        copyBtn.style.borderRadius = "999px";
+        copyBtn.style.fontSize = "0.55rem";
+        copyBtn.style.cursor = "pointer";
+        copyBtn.style.background = "rgba(255,255,255,0.08)";
+        copyBtn.addEventListener("click", () => {
+          navigator.clipboard.writeText(text).then(() => {
+            copyBtn.textContent = "Copied";
+            setTimeout(() => (copyBtn.textContent = "Copy"), 1000);
+          });
+        });
+        pre.appendChild(copyBtn);
+
+        // insert after iframe-wrapper if present, else at end of footer
+        const iframeWrapper = card.querySelector(".iframe-wrapper");
+        if (iframeWrapper) {
+          iframeWrapper.after(pre);
+        } else {
+          card.appendChild(pre);
+        }
+      } catch (e) {
+        console.warn("Failed to load raw snippet", url, e);
+      }
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    attachRawViews();
+  });
+</script>
+
 </body>
 </html>
