@@ -3,369 +3,74 @@
 <head>
   <meta charset="utf-8" />
   <title>Objecx UI</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="icon" type="image/svg+xml" href="ObjecxLogo.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="objecx-ui.css" />
-  <style>
-    /* tweak for iframe previews */
-    .preview-frame {
-      width: 100%;
-      height: 140px;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      background: #0f0f12;
-      overflow: hidden;
-    }
-    .snippet-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: .75rem;
-    }
-    .snippet-footer {
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-    .small-link {
-      font-size:.65rem;
-      opacity:.8;
-      text-decoration:none;
-      color:inherit;
-      background: rgba(255,255,255,0.04);
-      padding:4px 10px;
-      border-radius:999px;
-    }
-    .component-label {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:8px;
-    }
-    .iframe-wrapper {
-      flex:1;
-      min-height:140px;
-    }
-  </style>
+  <script defer src="objecx-ui.js"></script>
 </head>
 <body>
-
-  <!-- Top bar -->
-  <header class="topbar">
-    <div class="inner">
-      <div class="brand">
-        <img src="ObjecxLogo.svg" alt="Objecx" />
-        <div class="title">
-          <div class="name">Objecx UI</div>
-          <div class="tagline">Design language. No framework required.</div>
-        </div>
-      </div>
-      <nav class="nav">
-        <a href="#welcome" class="active">Welcome</a>
-        <a href="#what-is">What is</a>
-        <a href="#uielements">UI Elements</a>
-        <a href="#tokens">Tokens</a>
-        <a href="#footer">Docs</a>
-      </nav>
-    </div>
+  <header class="site-header">
+    <h1 class="logo">Objecx UI</h1>
+    <nav class="nav">
+      <a href="#what-is">About</a>
+      <a href="#components">Components</a>
+      <a href="#get-started">Get Started</a>
+    </nav>
   </header>
 
-  <main class="container">
-    <!-- Welcome -->
-    <section id="welcome" class="section">
-      <h1>Welcome to Objecx UI</h1>
-      <p class="lead">A clean, lightweight, simple HTML-based design language for your website. No JavaScript framework needed.</p>
-      <div class="separator" aria-hidden="true"></div>
+  <main class="site-main">
+    <section class="hero">
+      <h2>The clean, HTML-first design system</h2>
+      <p>
+        Objecx UI is a design library built with simplicity in mind.
+        Drop in a single CSS file and unlock modern, polished interface components
+        without the need for heavy frameworks.
+      </p>
     </section>
 
-    <!-- What is Objecx UI -->
     <section id="what-is" class="section">
       <h2>What is Objecx UI?</h2>
-      <p>Objecx UI is an HTML-first design system that gives you polished, consistent interface primitives without the baggage of JavaScript frameworks. Think Figma-level visual clarity with copy-paste code. Drop in a CSS file, use semantic classes, and get a coherent look across projects.</p>
+      <p>
+        Objecx UI gives you polished, consistent interface primitives
+        without the baggage of JavaScript frameworks. Think Figma-level visual clarity
+        with copy-paste code. Drop in a CSS file, use semantic classes, and build your interface
+        with confidence.
+      </p>
 
-      <div class="cards row">
-        <a class="Objecx-card link-card" href="https://Objecx-ui.vercel.app/">
-          <div class="Objecx-card-header">Objecx UI</div>
-          <div class="Objecx-card-body">The core design system—buttons, floats, inputs, toasts, tokens, and documentation.</div>
+      <div class="card-grid">
+        <a class="objecx-card" href="https://objecx-ui.vercel.app/">
+          <strong>Objecx UI</strong>
+          <span>The core design system—buttons, floats, inputs, toasts, tokens, and documentation.</span>
         </a>
-        <a class="Objecx-card link-card" href="https://Objecx-playground.vercel.app">
-          <div class="Objecx-card-header">Objecx Playground</div>
-          <div class="Objecx-card-body">Micro-game arcade (Uncatch, Ping Pong AI) built using Objecx UI principles.</div>
+        <a class="objecx-card" href="https://objecx-playground.vercel.app">
+          <strong>Objecx Playground</strong>
+          <span>A micro-game arcade (Uncatch, Ping Pong AI) built using Objecx UI principles.</span>
         </a>
-        <a class="Objecx-card link-card" href="https://mapdroid.vercel.app">
-          <div class="Objecx-card-header">Mapdroid</div>
-          <div class="Objecx-card-body">Location & utility app—showcases Objecx UI in a real productivity context.</div>
+        <a class="objecx-card" href="https://mapdroid.vercel.app">
+          <strong>Mapdroid</strong>
+          <span>A location & productivity app that showcases Objecx UI in action.</span>
         </a>
       </div>
 
       <div class="separator" aria-hidden="true"></div>
     </section>
 
-    <!-- UI Elements -->
-    <section id="uielements" class="section">
-      <h1>UI Elements</h1>
-      <p class="lead">Use this page if you want to manually insert code.</p>
-      <p class="text">
-        To easily copy things from this page, simply navigate to the snippet URL for the component you want, like <code>ui.Objecx.vercel.app/components/trigger.html</code> or <code>ui.Objecx.vercel.app/components/float.html</code>.
-      </p>
-      <p class="text" style="margin-top:1rem;">
-        If you are using the Objecx color palette, then simply add a link to your CSS file: <code>ui.Objecx.vercel.app/components/colors.css</code>
-      </p>
-
-      <div class="snippet-grid" style="display:grid; gap:1.5rem; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); margin-top:1.5rem;">
-        <!-- Trigger -->
-        <div class="snippet-card Objecx-card">
-          <div class="component-label">
-            <div class="snippet-title">Trigger</div>
-            <div style="font-size:.65rem; opacity:.8;">trigger.html</div>
-          </div>
-          <div class="snippet-desc">The pill-shaped action button. Gradient highlight variant.</div>
-          <div class="iframe-wrapper">
-            <iframe class="preview-frame" src="components/trigger.html" loading="lazy" title="Trigger preview"></iframe>
-          </div>
-          <div class="snippet-footer">
-            <a class="Objecx-btn small" href="components/trigger.html">View</a>
-            <a class="small-link" href="components/trigger.html" target="_blank" rel="noopener">Raw</a>
-          </div>
-        </div>
-
-        <!-- Card -->
-        <div class="snippet-card Objecx-card">
-          <div class="component-label">
-            <div class="snippet-title">Card</div>
-            <div style="font-size:.65rem; opacity:.8;">card.html</div>
-          </div>
-          <div class="snippet-desc">Elevated container for grouping content.</div>
-          <div class="iframe-wrapper">
-            <iframe class="preview-frame" src="components/card.html" loading="lazy" title="Card preview"></iframe>
-          </div>
-          <div class="snippet-footer">
-            <a class="Objecx-btn small" href="components/card.html">View</a>
-            <a class="small-link" href="components/card.html" target="_blank" rel="noopener">Raw</a>
-          </div>
-        </div>
-
-        <!-- Input -->
-        <div class="snippet-card Objecx-card">
-          <div class="component-label">
-            <div class="snippet-title">Input</div>
-            <div style="font-size:.65rem; opacity:.8;">input.html</div>
-          </div>
-          <div class="snippet-desc">Text input with focus ring and soft background.</div>
-          <div class="iframe-wrapper">
-            <iframe class="preview-frame" src="components/input.html" loading="lazy" title="Input preview"></iframe>
-          </div>
-          <div class="snippet-footer">
-            <a class="Objecx-btn small" href="components/input.html">View</a>
-            <a class="small-link" href="components/input.html" target="_blank" rel="noopener">Raw</a>
-          </div>
-        </div>
-
-        <!-- Float -->
-        <div class="snippet-card Objecx-card">
-          <div class="component-label">
-            <div class="snippet-title">Float</div>
-            <div style="font-size:.65rem; opacity:.8;">float.html</div>
-          </div>
-          <div class="snippet-desc">Accessible modal/dialog with backdrop blur.</div>
-          <div class="iframe-wrapper">
-            <iframe class="preview-frame" src="components/float.html" loading="lazy" title="Float preview"></iframe>
-          </div>
-          <div class="snippet-footer">
-            <a class="Objecx-btn small" href="components/float.html">View</a>
-            <a class="small-link" href="components/float.html" target="_blank" rel="noopener">Raw</a>
-          </div>
-        </div>
-
-        <!-- Toast -->
-        <div class="snippet-card Objecx-card">
-          <div class="component-label">
-            <div class="snippet-title">Toast</div>
-            <div style="font-size:.65rem; opacity:.8;">toast.html</div>
-          </div>
-          <div class="snippet-desc">Temporary notification / toast helper.</div>
-          <div class="iframe-wrapper">
-            <iframe class="preview-frame" src="components/toast.html" loading="lazy" title="Toast preview"></iframe>
-          </div>
-          <div class="snippet-footer">
-            <a class="Objecx-btn small" href="components/toast.html">View</a>
-            <a class="small-link" href="components/toast.html" target="_blank" rel="noopener">Raw</a>
-          </div>
-        </div>
-
-        <!-- Badge -->
-        <div class="snippet-card Objecx-card">
-          <div class="component-label">
-            <div class="snippet-title">Badge</div>
-            <div style="font-size:.65rem; opacity:.8;">badge.html</div>
-          </div>
-          <div class="snippet-desc">Status and accent badges.</div>
-          <div class="iframe-wrapper">
-            <iframe class="preview-frame" src="components/badge.html" loading="lazy" title="Badge preview"></iframe>
-          </div>
-          <div class="snippet-footer">
-            <a class="Objecx-btn small" href="components/badge.html">View</a>
-            <a class="small-link" href="components/badge.html" target="_blank" rel="noopener">Raw</a>
-          </div>
-        </div>
-
-        <!-- Tooltip -->
-        <div class="snippet-card Objecx-card">
-          <div class="component-label">
-            <div class="snippet-title">Tooltip</div>
-            <div style="font-size:.65rem; opacity:.8;">tooltip.html</div>
-          </div>
-          <div class="snippet-desc">Hover-based contextual helper.</div>
-          <div class="iframe-wrapper">
-            <iframe class="preview-frame" src="components/tooltip.html" loading="lazy" title="Tooltip preview"></iframe>
-          </div>
-          <div class="snippet-footer">
-            <a class="Objecx-btn small" href="components/tooltip.html">View</a>
-            <a class="small-link" href="components/tooltip.html" target="_blank" rel="noopener">Raw</a>
-          </div>
-        </div>
-
-        <!-- Tabs -->
-        <div class="snippet-card Objecx-card">
-          <div class="component-label">
-            <div class="snippet-title">Tabs</div>
-            <div style="font-size:.65rem; opacity:.8;">tabs.html</div>
-          </div>
-          <div class="snippet-desc">Segmented tab navigation.</div>
-          <div class="iframe-wrapper">
-            <iframe class="preview-frame" src="components/tabs.html" loading="lazy" title="Tabs preview"></iframe>
-          </div>
-          <div class="snippet-footer">
-            <a class="Objecx-btn small" href="components/tabs.html">View</a>
-            <a class="small-link" href="components/tabs.html" target="_blank" rel="noopener">Raw</a>
-          </div>
-        </div>
-
-        <!-- Segmented -->
-        <div class="snippet-card Objecx-card">
-          <div class="component-label">
-            <div class="snippet-title">Segmented Control</div>
-            <div style="font-size:.65rem; opacity:.8;">segmented.html</div>
-          </div>
-          <div class="snippet-desc">Grouped toggle-style control for options.</div>
-          <div class="iframe-wrapper">
-            <iframe class="preview-frame" src="components/segmented.html" loading="lazy" title="Segmented preview"></iframe>
-          </div>
-          <div class="snippet-footer">
-            <a class="Objecx-btn small" href="components/segmented.html">View</a>
-            <a class="small-link" href="components/segmented.html" target="_blank" rel="noopener">Raw</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="separator" aria-hidden="true"></div>
+    <section id="components" class="section">
+      <h2>Components</h2>
+      <p>Explore ready-to-use elements like inputs, buttons, badges, tabs, and segmented controls.</p>
+      <p>Each component is pure HTML + CSS, with optional JS for interactivity.</p>
     </section>
 
-    <!-- Design tokens preview/link -->
-    <section id="tokens" class="section">
-      <h2>Design Tokens</h2>
-      <p class="text">Objecx UI’s source of truth for colors, spacing, radii, shadows, and typography. You can download or reference the raw token files directly.</p>
-      <div class="token-links">
-        <a class="Objecx-btn" href="tokens.json" download>Download JSON</a>
-        <a class="Objecx-btn" href="components/colors.css">View CSS Tokens</a>
-      </div>
-      <div class="separator" aria-hidden="true"></div>
+    <section id="get-started" class="section">
+      <h2>Get Started</h2>
+      <p>
+        Copy the <code>objecx-ui.css</code> file into your project, link it in your HTML,
+        and start building. You can also load via CDN for quick prototyping.
+      </p>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer id="footer">
-    <div class="container footer-inner">
-      <div class="footer-left">
-        <div><strong>Objecx UI</strong> — HTML-first design system. No framework lock-in. © 2025 Objecx Labs.</div>
-        <div class="small">Built with Inter & JetBrains Mono. Served via Vercel. Inspired by polished system UI patterns.</div>
-      </div>
-      <div class="footer-right">
-        <a href="https://github.com/Objecx-svg/Objecx-ui" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://vercel.com" target="_blank" rel="noopener">Deployed on Vercel</a>
-      </div>
-    </div>
+  <footer class="site-footer">
+    <p>Built with ❤️ using Objecx UI — © 2025 Velin</p>
   </footer>
-
-  <script src="Objecx-ui.js"></script>
-<script>
-  // escape HTML so it shows as raw code
-  function escapeHtml(str) {
-    return str
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#39;");
-  }
-
-  // for every snippet card, fetch its raw HTML and insert a code view
-  async function attachRawViews() {
-    // find all snippet cards that have a "Raw" link pointing to the file
-    document.querySelectorAll(".snippet-card").forEach(async card => {
-      const rawLink = card.querySelector("a.small-link");
-      if (!rawLink) return;
-      const url = rawLink.getAttribute("href");
-      try {
-        const res = await fetch(url);
-        if (!res.ok) return;
-        const text = await res.text();
-
-        // create the code block container
-        const pre = document.createElement("pre");
-        pre.style.position = "relative";
-        pre.style.background = "rgba(255,255,255,0.04)";
-        pre.style.padding = "12px";
-        pre.style.borderRadius = "8px";
-        pre.style.marginTop = "8px";
-        pre.style.overflow = "auto";
-        pre.style.fontSize = "0.65rem";
-        pre.style.maxHeight = "220px";
-
-        const code = document.createElement("code");
-        code.innerHTML = escapeHtml(text);
-        code.style.whiteSpace = "pre-wrap";
-        code.style.display = "block";
-        pre.appendChild(code);
-
-        // copy button
-        const copyBtn = document.createElement("button");
-        copyBtn.textContent = "Copy";
-        copyBtn.style.position = "absolute";
-        copyBtn.style.top = "6px";
-        copyBtn.style.right = "6px";
-        copyBtn.style.padding = "4px 10px";
-        copyBtn.style.border = "none";
-        copyBtn.style.borderRadius = "999px";
-        copyBtn.style.fontSize = "0.55rem";
-        copyBtn.style.cursor = "pointer";
-        copyBtn.style.background = "rgba(255,255,255,0.08)";
-        copyBtn.addEventListener("click", () => {
-          navigator.clipboard.writeText(text).then(() => {
-            copyBtn.textContent = "Copied";
-            setTimeout(() => (copyBtn.textContent = "Copy"), 1000);
-          });
-        });
-        pre.appendChild(copyBtn);
-
-        // insert after iframe-wrapper if present, else at end of footer
-        const iframeWrapper = card.querySelector(".iframe-wrapper");
-        if (iframeWrapper) {
-          iframeWrapper.after(pre);
-        } else {
-          card.appendChild(pre);
-        }
-      } catch (e) {
-        console.warn("Failed to load raw snippet", url, e);
-      }
-    });
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    attachRawViews();
-  });
-</script>
-
 </body>
 </html>
