@@ -12,7 +12,7 @@
       padding:2rem;
       font-family: Inter, system-ui, sans-serif;
     }
-    .segmented {
+    .objecx-segmented {
       display:inline-flex;
       border-radius:999px;
       overflow:hidden;
@@ -20,7 +20,7 @@
       font-size:.85rem;
       gap:0;
     }
-    .segmented button {
+    .objecx-segmented button {
       padding:.55rem 1rem;
       border:none;
       background: transparent;
@@ -29,16 +29,16 @@
       transition: background .2s ease;
       position: relative;
     }
-    .segmented button.active {
+    .objecx-segmented button.active {
       background: #fff;
       color:#000;
     }
-    .segmented button:not(.active):hover {
+    .objecx-segmented button:not(.active):hover {
       background: rgba(255,255,255,0.08);
     }
-    .output {
+    .objecx-output {
       margin-top:1rem;
-      background: var(--card-bg);
+      background: var(--card-bg-objecx);
       padding:1rem;
       border-radius:12px;
       max-width:500px;
@@ -48,27 +48,27 @@
 <body>
   <div>
     <div style="margin-bottom:8px; font-weight:700;">Segmented Control</div>
-    <div class="segmented" role="group" aria-label="Options">
+    <div class="objecx-segmented" role="group" aria-label="Options">
       <button class="active" data-value="one">Option 1</button>
       <button data-value="two">Option 2</button>
       <button data-value="three">Option 3</button>
     </div>
-    <div class="output" aria-live="polite">
-      Selected: <span id="selected">Option 1</span>
+    <div class="objecx-output" aria-live="polite">
+      Selected: <span id="objecx-selected">Option 1</span>
     </div>
   </div>
 
   <script>
-    const buttons = document.querySelectorAll(".segmented button");
-    const output = document.getElementById("selected");
+    const objecxButtons = document.querySelectorAll(".objecx-segmented button");
+    const objecxOutput = document.getElementById("objecx-selected");
 
     function setActive(btn) {
-      buttons.forEach(b => b.classList.remove("active"));
+      objecxButtons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-      output.textContent = btn.textContent;
+      objecxOutput.textContent = btn.textContent;
     }
 
-    buttons.forEach(btn => {
+    objecxButtons.forEach(btn => {
       btn.addEventListener("click", () => setActive(btn));
     });
   </script>
