@@ -1,6 +1,6 @@
-# Velin UI
+# Objecx UI
 
-Velin UI is a clean, lightweight, HTML-first design component library that requires **no JavaScript framework**.  
+Objecx UI is a clean, lightweight, HTML-first design component library that requires **no JavaScript framework**.  
 It is designed to be beginner-friendly while still providing a professional, Figma-level design experience.  
 Use it directly in your projects with a single `<script>` tag or link to individual HTML/CSS snippets.
 
@@ -24,11 +24,11 @@ Use it directly in your projects with a single `<script>` tag or link to individ
 
 ## Overview
 
-Velin UI delivers HTML and CSS components that can be used directly in any project without a JavaScript build system.  
+Objecx UI delivers HTML and CSS components that can be used directly in any project without a JavaScript build system.  
 It supports two primary usage modes:
 
 1. **Embed Script (recommended)**  
-   Load one JavaScript file (`embed.js`) which automatically injects the Velin UI stylesheet and registers all web components. You can then use custom HTML tags like `<velin-trigger>` anywhere in your page.
+   Load one JavaScript file (`embed.js`) which automatically injects the Objecx UI stylesheet and registers all web components. You can then use custom HTML tags like `<Objecx-trigger>` anywhere in your page.
 
 2. **Direct HTML/CSS Snippets**  
    Copy-paste or link to standalone HTML component files in `/components/` for fine-grained control without web components.
@@ -40,7 +40,7 @@ It supports two primary usage modes:
 - HTML-first design system
 - No dependency on React, Vue, or other frameworks
 - Fully responsive components
-- Consistent Velin design language
+- Consistent Objecx design language
 - Predefined CSS variables for easy theming
 - Web components for zero-boilerplate usage
 - Individual HTML/CSS files for standalone use
@@ -55,24 +55,24 @@ It supports two primary usage modes:
 Add the following to your HTML:
 
 ```html
-<script src="https://velin-ui.vercel.app/embed.js" defer></script>
+<script src="https://Objecx-ui.vercel.app/embed.js" defer></script>
 ```
-Once loaded, you can use Velin UI components as custom HTML elements:
+Once loaded, you can use Objecx UI components as custom HTML elements:
 ```html
-<velin-trigger label="Click Me" highlighted></velin-trigger>
-<velin-input placeholder="Search..."></velin-input>
-<velin-card>
+<Objecx-trigger label="Click Me" highlighted></Objecx-trigger>
+<Objecx-input placeholder="Search..."></Objecx-input>
+<Objecx-card>
   <div style="font-weight:700;">Title</div>
   <div>Content here.</div>
-</velin-card>
+</Objecx-card>
 ```
 The embed script:
 
-- Injects the shared Velin CSS
+- Injects the shared Objecx CSS
 
 - Defines all web components
 
-- Provides the global Velin helper object `(e.g., Velin.showToast())`.
+- Provides the global Objecx helper object `(e.g., Objecx.showToast())`.
 
 ---
 
@@ -83,13 +83,13 @@ Link to the component's HTML or CSS directly from the /components/ folder.
 Example for a Trigger button:
 
 ```html
-<link rel="stylesheet" href="https://velin-ui.vercel.app/components/colors.css">
-<link rel="stylesheet" href="https://velin-ui.vercel.app/velin-ui.css">
+<link rel="stylesheet" href="https://Objecx-ui.vercel.app/components/colors.css">
+<link rel="stylesheet" href="https://Objecx-ui.vercel.app/Objecx-ui.css">
 
 <div>
   <!-- Paste from trigger.html -->
-  <button class="velin-btn">Trigger</button>
-  <button class="velin-btn highlighted">Highlighted</button>
+  <button class="Objecx-btn">Trigger</button>
+  <button class="Objecx-btn highlighted">Highlighted</button>
 </div>
 ```
 Quick Start Example
@@ -98,26 +98,26 @@ Quick Start Example
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Velin UI Starter</title>
+  <title>Objecx UI Starter</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <script src="https://velin-ui.vercel.app/embed.js" defer></script>
+  <script src="https://Objecx-ui.vercel.app/embed.js" defer></script>
 </head>
 <body style="background:#0f0f12; color:#f5f5f7; font-family:Inter,sans-serif; padding:2rem;">
 
-  <h1>Welcome to Velin UI</h1>
+  <h1>Welcome to Objecx UI</h1>
   <p>A clean, HTML-based component library with no framework required.</p>
 
-  <velin-trigger label="Default"></velin-trigger>
-  <velin-trigger label="Highlighted" highlighted></velin-trigger>
+  <Objecx-trigger label="Default"></Objecx-trigger>
+  <Objecx-trigger label="Highlighted" highlighted></Objecx-trigger>
 
-  <velin-input placeholder="Search..."></velin-input>
+  <Objecx-input placeholder="Search..."></Objecx-input>
 
-  <velin-card>
+  <Objecx-card>
     <div style="font-weight:700;">Example Card</div>
     <div>Body content goes here.</div>
-  </velin-card>
+  </Objecx-card>
 
-  <velin-trigger label="Show Toast" onclick="Velin.showToast('Hello from Velin')"></velin-trigger>
+  <Objecx-trigger label="Show Toast" onclick="Objecx.showToast('Hello from Objecx')"></Objecx-trigger>
 
 </body>
 </html>
@@ -127,31 +127,31 @@ Quick Start Example
 Web Component Attributes
 
 All components share a clean attribute-based API:
-`<velin-trigger>`
+`<Objecx-trigger>`
 
 - `label` — Text inside the button
 
-- `highlighted` — Applies Velin gradient styling
+- `highlighted` — Applies Objecx gradient styling
 
 - `small` — Reduces padding and size
 
-`<velin-input>`
+`<Objecx-input>`
 
 - `placeholder` — Input placeholder text
 
 - `type` — Input type (text, password, etc.)
 
-`<velin-card>`
+`<Objecx-card>`
 
 - Slot-based container for any HTML
 
-`<velin-float>`
+`<Objecx-float>`
 
 - `allow-dismiss` — Click outside to close
 
 - `open` — Start open
 
-`<velin-toast>`
+`<Objecx-toast>`
 
 - `message` — Text to display
 
@@ -180,7 +180,7 @@ Example:
 ```html
 <div id="placeholder"></div>
 <script>
-fetch('https://velin-ui.vercel.app/components/trigger.html')
+fetch('https://Objecx-ui.vercel.app/components/trigger.html')
   .then(res => res.text())
   .then(html => document.getElementById('placeholder').innerHTML = html);
 </script>
@@ -188,7 +188,7 @@ fetch('https://velin-ui.vercel.app/components/trigger.html')
 
 ## Customizing
 
-Velin UI uses CSS variables defined in /components/colors.css.
+Objecx UI uses CSS variables defined in /components/colors.css.
 
 Example override:
 
@@ -196,15 +196,15 @@ Example override:
 :root {
   --bg: #ffffff;
   --text: #000000;
-  --gradient-velin: linear-gradient(135deg,#ff0000,#0000ff);
+  --gradient-Objecx: linear-gradient(135deg,#ff0000,#0000ff);
 }
 ```
 
 ## Folder Structure
 
 /
-├─ embed.js                  # Defines web components and Velin helper API
-├─ velin-ui.css              # Core styles for all components
+├─ embed.js                  # Defines web components and Objecx helper API
+├─ Objecx-ui.css              # Core styles for all components
 ├─ components/
 │    ├─ trigger.html
 │    ├─ card.html
@@ -216,7 +216,7 @@ Example override:
 
 ## Design Tokens
 
-A tokens.json file contains Velin's design primitives for tooling and automation:
+A tokens.json file contains Objecx's design primitives for tooling and automation:
 
 ```css
 {
@@ -234,6 +234,6 @@ A tokens.json file contains Velin's design primitives for tooling and automation
 
 License
 
-Velin UI is released under the GNU General Public License. You are free to use it in personal and commercial projects.
+Objecx UI is released under the GNU General Public License. You are free to use it in personal and commercial projects.
 Thank You, 
-The Velin Guy, not team.
+The Objecx Guy, not team.
