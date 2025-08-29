@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Velin Toast</title>
+  <title>Objecx Toast</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="stylesheet" href="/components/colors.css" />
   <style>
     .controls { display:flex; gap:12px; flex-wrap:wrap; font-family:Inter,sans-serif; }
-    .velin-btn {
+    .objecx-btn {
       position: relative;
       display: inline-flex;
       align-items: center;
@@ -23,7 +23,7 @@
       background: #fff;
       color:#000;
     }
-    .velin-btn.highlighted { background: var(--gradient-velin); color:#fff; }
+    .objecx-btn.highlighted { background: var(--gradient-objecx); color:#fff; }
     .toast-container {
       position: fixed;
       top:16px;
@@ -62,8 +62,8 @@
 </head>
 <body style="background:transparent; margin:0; padding:2rem;">
   <div class="controls">
-    <button class="velin-btn" onclick="show('success')">Show Success</button>
-    <button class="velin-btn highlighted" onclick="show('error')">Show Error</button>
+    <button class="objecx-btn" onclick="show('success')">Show Success</button>
+    <button class="objecx-btn highlighted" onclick="show('error')">Show Error</button>
   </div>
   <div class="toast-container" aria-live="polite" role="status"></div>
 
