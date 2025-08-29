@@ -23,14 +23,14 @@
 
   // Toast helper (you can expose this globally for snippet usage)
   window.showToast = function(message, type = "success", duration = 3000) {
-    let container = document.querySelector(".velin-toast-container");
+    let container = document.querySelector(".objecx-toast-container");
     if (!container) {
       container = document.createElement("div");
-      container.className = "velin-toast-container";
+      container.className = "objecx-toast-container";
       document.body.appendChild(container);
     }
     const toast = document.createElement("div");
-    toast.className = `velin-toast ${type}`;
+    toast.className = `objecx-toast ${type}`;
     toast.style.fontFamily = "JetBrains Mono";
     toast.innerHTML = `<div>${message}</div><button class="close" aria-label="close">&times;</button>`;
     container.appendChild(toast);
