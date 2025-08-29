@@ -2,39 +2,75 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Velin Input</title>
+  <title>Objecx Segmented Control</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="stylesheet" href="/components/colors.css" />
   <style>
-    .field {
-      max-width:360px;
-      display:flex;
-      flex-direction:column;
-      gap:6px;
+    body {
+      background: transparent;
+      margin:0;
+      padding:2rem;
       font-family: Inter, system-ui, sans-serif;
     }
-    .velin-input {
-      background: var(--input-bg);
-      border: none;
-      padding: .85rem 1rem;
-      border-radius: .75rem;
-      font-size:1rem;
-      color: var(--text);
-      width:100%;
-      transition: box-shadow .25s ease, background .25s ease;
-      outline: none;
+    .segmented {
+      display:inline-flex;
+      border-radius:999px;
+      overflow:hidden;
+      background: rgba(255,255,255,0.04);
+      font-size:.85rem;
+      gap:0;
     }
-    .velin-input:focus {
-      background: var(--input-bg-focus);
-      box-shadow: 0 0 0 3px rgba(168,67,157,.6);
+    .segmented button {
+      padding:.55rem 1rem;
+      border:none;
+      background: transparent;
+      cursor:pointer;
+      font-weight:600;
+      transition: background .2s ease;
+      position: relative;
     }
-    label { font-weight:600; }
+    .segmented button.active {
+      background: #fff;
+      color:#000;
+    }
+    .segmented button:not(.active):hover {
+      background: rgba(255,255,255,0.08);
+    }
+    .output {
+      margin-top:1rem;
+      background: var(--card-bg);
+      padding:1rem;
+      border-radius:12px;
+      max-width:500px;
+    }
   </style>
 </head>
-<body style="background:transparent; margin:0; padding:2rem;">
-  <div class="field">
-    <label for="example">Example Input</label>
-    <input id="example" class="velin-input" placeholder="Type something…" />
+<body>
+  <div>
+    <div style="margin-bottom:8px; font-weight:700;">Segmented Control</div>
+    <div class="segmented" role="group" aria-label="Options">
+      <button class="active" data-value="one">Option 1</button>
+      <button data-value="two">Option 2</button>
+      <button data-value="three">Option 3</button>
+    </div>
+    <div class="output" aria-live="polite">
+      Selected: <span id="selected">Option 1</span>
+    </div>
   </div>
+
+  <script>
+    const buttons = document.querySelectorAll(".segmented button");
+    const output = document.getElementById("selected");
+
+    function setActive(btn) {
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      output.textContent = btn.textContent;
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => setActive(btn));
+    });
+  </script>
 </body>
 </html>
